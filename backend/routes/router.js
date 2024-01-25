@@ -7,6 +7,7 @@ router.post('/users', async(req, res) => {
     const userData = {username: username, password:password, email:email}
     const newUser = new schemas.Users(userData)
     const saveNewUser = await newUser.save()
+    saveNewUser()
     res.end()
 })
 
