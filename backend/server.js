@@ -18,10 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use('/', router)
 
-const dbOptions = {
-    useNewUrlParser:true, useUnifiedTopology: true
-}
-mongoose.connect(process.env.DB_URL, dbOptions)
+mongoose.connect(process.env.DB_URL)
 .then(() => console.log('DB connected!'))
 
 const port = process.env.PORT || 4000
