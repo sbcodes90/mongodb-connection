@@ -3,7 +3,7 @@ const cors = require('cors')//allows you to access our server from different dom
 const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const mongoose = require('mongoose')
-require('dotenv/config')
+require('dotenv').config()
 
 const app = express()
 app.use(bodyParser.json())
