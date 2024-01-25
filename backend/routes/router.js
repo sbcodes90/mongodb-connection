@@ -1,5 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const schemas = require('../models/schemas')
+
+router.post('/users', async(req, res) => {
+    const {username, password, email} = req.body
+    const userData = {username: username, password:password, email:email}
+    const newUser = new schemas.Users(userData)
+    const saveNewUser = await newUser.save()
+    res.end()
+})
+
+
 
 router.get('/users', (req, res) => {
     const userData = [
