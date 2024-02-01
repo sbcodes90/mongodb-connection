@@ -14,20 +14,9 @@ router.post('/users', async (req, res) => {
 })
 
 
-
-router.get('/users', (req, res) => {
-    const userData = [
-        {
-            "id": 1,
-            "username": "kyote",
-            "email": "kyote143@gmail.com"
-        },
-        {
-            "id": 2,
-            "username": "mingLee",
-            "email": "minglee@gmail.com"
-        }
-    ]
+///show all my database users
+router.get('/users', async (req, res) => {
+    const userData = await userModel.find()
     res.send(userData)
 })
 module.exports = router
