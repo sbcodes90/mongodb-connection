@@ -9,8 +9,8 @@ router.post('/users', async (req, res) => {
     const saveData = await userModel.insertMany(userData);
     console.log(saveData)
     res.send(saveData)
-    res.end()
-   
+    
+
 })
 
 
