@@ -18,8 +18,7 @@ function SignUpForm({
   };
 
   return (
-    <div className="bg-white rounded-3xl">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="bg-white rounded-3xl mt-[180px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
           <h1 className="text-2xl font-bold sm:text-3xl">Sign Up</h1>
         </div>
@@ -82,15 +81,15 @@ function SignUpForm({
 
             <button
               type="submit"
-              className="inline-block rounded-lg bg-teal-600 px-5 py-3 text-sm font-medium text-white"
+              className="inline-block rounded-lg bg-teal-600 px-5 py-3 text-md font-medium text-white"
               onClick={handleSubmit}
             >
-              Register
+              Create user
             </button>
           </div>
         </form>
       </div>
-    </div>
+
   );
 }
 
