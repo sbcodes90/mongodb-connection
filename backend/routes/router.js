@@ -5,8 +5,7 @@ const userModel = require('../models/schemas')
 router.post('/users', async (req, res) => {
     const {username, password, email} = req.body
     const userData = {username: username, password:password, email:email}
-
-    //schemas references to the exported model
+    //userModel references to the exported model
     const saveData = await userModel.insertMany(userData);
     console.log(saveData)
     res.send(saveData)
