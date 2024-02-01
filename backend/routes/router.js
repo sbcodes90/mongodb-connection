@@ -1,14 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const schemas = require('../models/schemas')
+const userModel = require('../models/schemas')
 
-router.post('/users', async(req, res) => {
+router.post('/users', async (req, res) => {
     const {username, password, email} = req.body
     const userData = {username: username, password:password, email:email}
-    const newUser = new schemas.Users(userData)
-    const saveNewUser = await newUser.save()
-    saveNewUser()
+
+    //schemas references to the exported model
+    const saveData = await userModel.insertMany(userData);
+    console.log(saveData)
+    res.send(saveData)
     res.end()
+   
 })
 
 
