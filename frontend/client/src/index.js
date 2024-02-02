@@ -3,41 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-  createBrowserRouter,
-  RouterProvider,
-  BrowserRouter
-} from "react-router-dom";
-import SignUpForm from './components/SignUpForm';
-import LoginForm from './components/LoginForm';
 
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <App />
-//   },
-//   {
-//     path: "/login",
-//     element: <LoginForm />
-//   },
-//   {
-//     path: "/signup",
-//     element: <SignUpForm />
-//   },
+const root = ReactDOM.createRoot(
+  document.getElementById('root')
+);
 
-// ]);
-
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <RouterProvider router={router} />
-// );
-
-
-ReactDOM.createRoot(document.getElementById("root")).render(
+root.render(
   <React.StrictMode>
-    <BrowserRouter>
       <App />
-    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function SignUpForm({
   username,
@@ -18,8 +19,8 @@ function SignUpForm({
   };
 
   return (
-    <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20">
-      <div className="bg-white rounded-3xl mt-[180px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20"> 
+      <div className="bg-white rounded-3xl lg:mt-[180px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
           <h1 className="text-2xl font-bold sm:text-3xl">Sign Up</h1>
         </div>
@@ -75,9 +76,9 @@ function SignUpForm({
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <a className="underline font-medium text-black" href="">
+              <Link  to="/login" className="underline font-medium text-black" href="">
                 Login
-              </a>
+              </Link>
             </p>
 
             <button
