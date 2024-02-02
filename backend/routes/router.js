@@ -13,6 +13,25 @@ router.post('/users', async (req, res) => {
 
 })
 
+router.post('/login', async (req, res) => {
+
+try {
+    // check if the user exists
+    const user = await userModel.findOne({ username: req.body.username });
+    if (user) {
+      //check if password matches
+      const result = req.body.password === user.password;
+      if (result) {
+        res.send("successfully logged in");
+      } else {
+        res.status(400).json({ error: "password doesn't match" });
+      }
+    } else {
+      res.status(400).json({ error: "User doesn't exist" });
+    }
+  } catch (error) {
+    res.status
+}})
 
 ///show all my database users
 router.get('/users', async (req, res) => {

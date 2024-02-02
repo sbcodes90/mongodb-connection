@@ -1,12 +1,22 @@
-import React from 'react'
+import React from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ username, password, setUsername, setPassword}) {
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log('username', username, 'password', password)
-  }
+  const navigate = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:4000/login", { username, password })
+      .then(response => {
+        if (response.status === 200) {
+        navigate("/welcome")
+        }
+      })   
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20"> 
     <div className="bg-white rounded-3xl lg:mt-[50px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
@@ -16,7 +26,7 @@ function LoginForm({ username, password, setUsername, setPassword}) {
 
       <form action="post" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
         <div>
-          <label for="username" className="sr-only">
+          <label className="sr-only">
             Username
           </label>
 
@@ -32,7 +42,7 @@ function LoginForm({ username, password, setUsername, setPassword}) {
         </div>
 
         <div>
-          <label for="password" className="sr-only">
+          <label className="sr-only">
             Password
           </label>
 
