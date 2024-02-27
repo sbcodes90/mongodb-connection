@@ -18,7 +18,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<SignUpForm />} />
+        <Route path="/" element={<SignUpForm  username={username} password={password} email={email} setUsername={setUsername} setPassword={setPassword} setEmail={setEmail}/>} />
         <Route path="/signup" element={<SignUpForm username={username} password={password} email={email} setUsername={setUsername} setPassword={setPassword} setEmail={setEmail}/>} />
         <Route path="/login" element={<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />
         <Route path="/welcome" element={<WelcomePage username={username} />} />
