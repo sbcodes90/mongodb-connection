@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -10,14 +10,23 @@ function SignUpForm({
   setPassword,
   setEmail,
 }) {
-  const handleSubmit = (e) => {
+
+  const [isLoading, setIsLoading] = useState(false)
+
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:4000/users", { username, password, email })
-      .then((result) => console.log(result))
-      .catch((err) => console.log(err));
+    try {
+      setIsLoading(true)
+      const response = await axios.post("http://localhost:4000/users", { username, password, email })
+      console.log('response', response)
+      setIsLoading(false)
+    } catch(err){
+      console.log('err', err)
+    }
   };
 
+  console.log('isLoading', isLoading)
   return (
     <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20"> 
       <div className="bg-white rounded-3xl lg:mt-[50px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">

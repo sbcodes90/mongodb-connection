@@ -8,7 +8,10 @@ router.post('/users', async (req, res) => {
     //userModel references to the exported model
     const saveData = await userModel.insertMany(userData);
     console.log(saveData)
-    res.send(saveData)
+    setTimeout(() => {
+      res.send(saveData)
+    }, 5000)
+ 
     
 
 })
