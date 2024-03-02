@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import StatusUpdatePopUp from "./StatusUpdatePopUp";
 
 function SignUpForm({
   username,
@@ -28,6 +29,8 @@ function SignUpForm({
 
   console.log('isLoading', isLoading)
   return (
+    <>
+    { !isLoading &&
     <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20"> 
       <div className="bg-white rounded-3xl lg:mt-[50px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
@@ -101,6 +104,11 @@ function SignUpForm({
         </form>
       </div>
 </div>
+}
+{ isLoading &&
+<StatusUpdatePopUp />
+}
+</>
   );
 }
 
