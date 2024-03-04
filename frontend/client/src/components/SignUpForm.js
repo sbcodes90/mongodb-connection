@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import StatusUpdatePopUp from "./StatusUpdatePopUp";
+import LoadingScreen from "./LoadingScreen";
 
 function SignUpForm({
   username,
@@ -106,7 +106,7 @@ function SignUpForm({
 </div>
 }
 { isLoading &&
-<StatusUpdatePopUp />
+<LoadingScreen />
 }
 </>
   );
