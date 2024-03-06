@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import LoadingScreen from './LoadingScreen';
 
 function LoginForm({ username, password, setUsername, setPassword}) {
+  const [isLoading, setIsLoading] = useState(false)
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     axios
       .post("http://localhost:4000/login", { username, password })
       .then(response => {
         if (response.status === 200) {
+          setIsLoading(false)
         navigate(`/welcome/${username}`)
         }
       })   
       .catch((err) => console.log(err));
   };
   return (
+    <>
+    {!isLoading && 
     <div className="bg-gradient-to-r from-teal-200 via-teal-500  to-teal-800 h-screen px-[20px] lg:px-[150px] py-20"> 
     <div className="bg-white rounded-3xl lg:mt-[50px] mx-auto max-w-screen-sm px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-lg text-center">
@@ -68,6 +74,11 @@ function LoginForm({ username, password, setUsername, setPassword}) {
       </form>
     </div>
 </div>
+}
+{ isLoading &&
+<LoadingScreen message="Logging In..."/>
+}
+</>
   )
 }
 
