@@ -107,7 +107,7 @@ function SignUpForm({
 </div>
 }
 { isLoading &&
-<LoadingScreen />
+<LoadingScreen message="Saving..."/>
 }
 </>
   );
