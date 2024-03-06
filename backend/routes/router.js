@@ -9,10 +9,9 @@ router.post('/users', async (req, res) => {
 
     //hash password
     const salt = await bcrypt.genSalt(10);
-    const hashedPasswrd = await bcrypt.hash(req.body.password, salt)
+    const hashedPassword = await bcrypt.hash(password, salt)
 
-    const userData = {username: username, password:hashedPasswrd, email:email}
-
+    const userData = {username: username, password:hashedPassword, email:email}
 
     // save data 
     const saveData = await userModel.insertMany(userData);
@@ -33,7 +32,7 @@ try {
     const user = await userModel.findOne({ username: req.body.username });
     if (user) {
       //check if password matches
-      const result = req.body.password === user.password;
+      const result = await bcrypt.compare(req.body.password, user.password);
       if (result) {
         res.send("successfully logged in");
       } else {

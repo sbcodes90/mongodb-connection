@@ -12,7 +12,7 @@ function LoginForm({ username, password, setUsername, setPassword}) {
       .post("http://localhost:4000/login", { username, password })
       .then(response => {
         if (response.status === 200) {
-        navigate("/welcome")
+        navigate(`/welcome/${username}`)
         }
       })   
       .catch((err) => console.log(err));
