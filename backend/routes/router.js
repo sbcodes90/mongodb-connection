@@ -1,12 +1,22 @@
 const express = require('express')
 const router = express.Router()
 const userModel = require('../models/schemas')
+const bcrypt = require('bcrypt');
 
 router.post('/users', async (req, res) => {
     const {username, password, email} = req.body
-    const userData = {username: username, password:password, email:email}
     //userModel references to the exported model
+
+    //hash password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPasswrd = await bcrypt.hash(req.body.password, salt)
+
+    const userData = {username: username, password:hashedPasswrd, email:email}
+
+
+    // save data 
     const saveData = await userModel.insertMany(userData);
+
     console.log(saveData)
     setTimeout(() => {
       res.send(saveData)
