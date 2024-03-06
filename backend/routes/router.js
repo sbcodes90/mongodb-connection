@@ -34,7 +34,9 @@ try {
       //check if password matches
       const result = await bcrypt.compare(req.body.password, user.password);
       if (result) {
+        setTimeout(() => {
         res.send("successfully logged in");
+        }, 5000)
       } else {
         res.status(400).json({ error: "password doesn't match" });
       }
