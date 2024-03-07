@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const userModel = require('../models/schemas')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 router.post('/users', async (req, res) => {
     const {username, password, email} = req.body
@@ -33,7 +34,13 @@ try {
     if (user) {
       //check if password matches
       const result = await bcrypt.compare(req.body.password, user.password);
+      
+      //Create and assign web token
+      const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
+      res.header('auth-token', token).send(token)
+
       if (result) {
+      
         setTimeout(() => {
         res.send("successfully logged in");
         }, 5000)
@@ -46,6 +53,7 @@ try {
   } catch (error) {
     res.status
 }})
+
 
 ///show all my database users
 router.get('/users', async (req, res) => {
