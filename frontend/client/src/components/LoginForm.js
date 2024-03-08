@@ -13,7 +13,7 @@ function LoginForm({ username, password, setUsername, setPassword}) {
     setIsLoading(true)
     axios
       .post("http://localhost:4000/login", { username, password })
-      .then(response => {
+      .then(response => { //the response is the token
         if (response.status === 200) {
           setIsLoading(false)
         navigate(`/welcome/${username}`)
