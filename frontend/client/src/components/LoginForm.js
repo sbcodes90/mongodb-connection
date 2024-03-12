@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import LoadingScreen from './LoadingScreen';
 
 function LoginForm({ username, password, setUsername, setPassword}) {
-  const [isLoading, setIsLoading] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -13,13 +13,30 @@ function LoginForm({ username, password, setUsername, setPassword}) {
     setIsLoading(true)
     axios
       .post("http://localhost:4000/login", { username, password })
-      .then(response => { //the response is the token
-        if (response.status === 200) {
-          setIsLoading(false)
-        navigate(`/welcome/${username}`)
+      .then(response => { 
+        //the response is the token
+        setIsLoading(false)
+        console.log('response', response)
+        return navigate(`/welcome/${username}`)
+        /* if (response.status === 200) {
+         
+        return navigate(`/welcome/${username}`)
         }
+         if(!response) {
+         return navigate(`/`)
+        } */
+      
       })   
-      .catch((err) => console.log(err));
+      .catch(function (error) {
+        if (error.response) {
+      
+          console.log(error.response)
+          setIsLoading(false)
+          setUsername("")
+          setPassword("")
+          setErrors(true)
+        }
+      });
   };
   return (
     <>
@@ -39,11 +56,12 @@ function LoginForm({ username, password, setUsername, setPassword}) {
           <div className="relative">
             <input
               type="email"
-              className="w-full rounded-lg border-gray-200 p-4 pe-12 text-md shadow-md"
-              placeholder="Create username"
+              className={`w-full rounded-lg ${errors ? 'border-red-500': 'border-gray-200'} p-4 pe-12 text-md shadow-md border-4`}
+              placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
+            {errors && <p className="text-red-500 mt-2">Invalid Username</p>}
           </div>
         </div>
 
@@ -55,11 +73,12 @@ function LoginForm({ username, password, setUsername, setPassword}) {
           <div className="relative">
             <input
               type="password"
-              className="w-full rounded-lg border-gray-200 p-4 pe-12 text-md shadow-md"
+              className={`w-full rounded-lg ${errors ? 'border-red-500': 'border-gray-200'} p-4 pe-12 text-md shadow-md border-4`}
               placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {errors && <p className="text-red-500 mt-2">Invalid Password</p>}
           </div>
         </div>
         <div className="flex items-center justify-center pt-5">
