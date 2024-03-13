@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from './LoadingScreen';
@@ -6,7 +6,6 @@ import LoadingScreen from './LoadingScreen';
 function LoginForm({ username, password, setUsername, setPassword }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(false);
-  const [token, settoken] = useState('')
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {

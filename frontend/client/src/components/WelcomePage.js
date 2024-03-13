@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import SheildIcon from "./SheildIcon";
+import SheildIcon from "./icons/SheildIcon";
 
 function WelcomePage() {
   const { username } = useParams();

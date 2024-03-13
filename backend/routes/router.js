@@ -89,8 +89,9 @@ router.post('/login', async (req, res) => {
 
 
 ///show all my database users
-router.get('/users', async (req, res) => {
+router.get('/database', async (req, res) => {
     const userData = await userModel.find()
+    console.log(userData)
     res.send(userData)
 })
 module.exports = router
