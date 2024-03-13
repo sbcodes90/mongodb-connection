@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import SheildIcon from "./SheildIcon";
 
 function WelcomePage() {
-
   const { username } = useParams();
 
-  const [token, setToken] = useState({})
+  const [token, setToken] = useState({});
 
   useEffect(() => {
-
     const saved = localStorage.getItem("auth-token");
-    setToken(saved)
- 
-  }, [])
+    setToken(saved);
+  }, []);
 
-  console.log('token', token)
-  
   return (
-    <div className="bg-teal-500 text-center h-screen">
-      <div className="font-bold text-5xl text-white pt-20">Welcome! {username} </div>
-      <div className="pt-20 text-white text-2xl">Lets create your profile!</div>
-      <div className="flex justify-center">
-        <div className="bg-white w-[800px] h-[400px] mt-10 rounded-lg border-teal-200 border-[20px]">
-          { token && 'Private Profile Information:  Example'}
-        </div>
-        </div>
+    <>
+      <div className={ token ? `bg-teal-500 min-h-screen text-center`:`bg-gray-300 min-h-screen text-center`}>
+        <div className="flex flex-col items-center pt-[200px] lg:inline-flex lg:mt-[100px]">
+          <div className={ token ? "font-bold text-3xl text-white" : "font-bold lg:text-3xl text-red-600"}>
+            {token
+              ? `Welcome! ${username}`
+              : "Whoops! Not Authorized Token Required"
+              }
+          </div>
+          <div className="pt-10">{!token && <SheildIcon />}</div>
+          </div> 
+         { !token &&  <div className="flex space-x-6 justify-center pt-[50px]">
+          <Link to="/login" className="py-2.5 px-10 me-2 mb-2 text-sm font-medium text-black focus:outline-none rounded-lg border-black border-2 focus:z-10 focus:ring-2 focus:ring-blue-400">Login</Link>
+          <Link to="/signup" className="py-2.5 px-9 me-2 mb-2 text-sm font-medium text-black focus:outline-none rounded-lg border-black border-2 focus:z-10 focus:ring-2 focus:ring-blue-400">Sign Up</Link>
+          </div>}
       </div>
-
-  )
+    </>
+  );
 }
 
-export default WelcomePage
+export default WelcomePage;
