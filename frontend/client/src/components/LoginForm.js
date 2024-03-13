@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from './LoadingScreen';
@@ -6,6 +6,7 @@ import LoadingScreen from './LoadingScreen';
 function LoginForm({ username, password, setUsername, setPassword }) {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(false);
+  const [token, settoken] = useState('')
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -14,12 +15,16 @@ function LoginForm({ username, password, setUsername, setPassword }) {
     axios
       .post("http://localhost:4000/login", { username, password })
       .then(response => {
-        //the response is the token
-        console.log('response', response)
+
         setTimeout(() => {
           setIsLoading(false)
         }, 5000);
-        return navigate(`/welcome/${username}`)
+        if(response.data) {
+          localStorage.setItem("auth-token", response.data)
+        return navigate(`/welcome/${username}`)}
+        else {
+        return  navigate('/')
+        }
       })
       .catch(function (error) {
         if (error.response) {
@@ -33,6 +38,7 @@ function LoginForm({ username, password, setUsername, setPassword }) {
         }
       });
   };
+
   return (
     <>
       {!isLoading &&
