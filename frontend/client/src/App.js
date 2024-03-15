@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import WelcomePage from "./components/WelcomePage";
 import UserList from "./components/UserList";
+import NewWelcomePage from "./components/NewWelcomePage";
 
 function App() {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="/" element={<SignUpForm  username={username} password={password} email={email} setUsername={setUsername} setPassword={setPassword} setEmail={setEmail}/>} />
+        <Route path="/" element={<NewWelcomePage />} />
         <Route path="/signup" element={<SignUpForm username={username} password={password} email={email} setUsername={setUsername} setPassword={setPassword} setEmail={setEmail}/>} />
         <Route path="/login" element={<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />
         <Route path="/welcome/:username" element={<WelcomePage username={username} />} />
