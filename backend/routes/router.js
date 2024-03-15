@@ -25,6 +25,12 @@ router.post('/createUser', async (req, res) => {
     const {username, password, email} = req.body
     //userModel references to the exported model
 
+    //check if user exists
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already exists." });
+    }
+
     //hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt)

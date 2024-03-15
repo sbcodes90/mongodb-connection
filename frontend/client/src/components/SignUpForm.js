@@ -13,6 +13,7 @@ function SignUpForm({
 }) {
 
   const [isLoading, setIsLoading] = useState(false)
+  const [errors, setErrors] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = async(e) => {
@@ -24,11 +25,17 @@ function SignUpForm({
       setIsLoading(false)
       navigate(`/welcome/${username}`)
     } catch(err){
-      console.log('err', err)
+        setErrors(err.response)
+        setTimeout(function(){
+          setIsLoading(false);
+      }, 2000);
+        
+      
     }
   };
 
-  console.log('isLoading', isLoading)
+  //console.log('errors', errors)
+
   return (
     <>
     { !isLoading &&
@@ -78,11 +85,12 @@ function SignUpForm({
             <div className="relative">
               <input
                 type="email"
-                className="w-full rounded-lg border-gray-200 p-4 pe-12 text-md shadow-md"
+                className={`w-full rounded-lg ${errors?.status === 400 ? 'border-red-500 border-2' : 'border-gray-200' } p-4 pe-12 text-md shadow-md`}
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
+              {errors?.status === 400 && <div className="text-red-600 pt-3 text-sm">Email already exists</div>}
             </div>
           </div>
 
@@ -96,8 +104,9 @@ function SignUpForm({
 
             <button
               type="submit"
-              className="inline-block rounded-lg bg-teal-600 px-5 py-3 text-md font-medium text-white"
+              className={`inline-block rounded-lg ${errors?.status === 400 ? 'bg-gray-300 cursor-not-allowed' : 'bg-teal-600' } px-5 py-3 text-md font-medium text-white`}
               onClick={handleSubmit}
+              disabled={errors?.status === 400}
             >
               Create user
             </button>
