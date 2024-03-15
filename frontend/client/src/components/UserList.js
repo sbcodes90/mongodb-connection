@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import CautionIcon from "./icons/CautionIcon";
+import { useNavigate } from "react-router-dom";
 
 function UserList() {
   const [userList, setUserList] = useState([]);
@@ -14,11 +15,22 @@ function UserList() {
 
   const deleteUser = async(id) => {//thank you thank you thank you Lord!!
     const response = await axios.delete(`/userlist/${id}` )
-    getData()
-   return console.log(response)
+    getData();
+   return console.log(response);
 
   }
+
+  const navigate = useNavigate();
+
   useEffect(() => {
+
+    const token = localStorage.getItem('auth-token');
+
+    if(!token) {
+      alert('Sorry token expired please login again')
+      return navigate('/login')
+    }
+
     getData();
   }, []);
 
