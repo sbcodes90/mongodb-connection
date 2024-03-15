@@ -4,7 +4,24 @@ const userModel = require('../models/schemas')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-router.post('/users', async (req, res) => {
+//delete user by id
+
+router.delete("/userlist/:id", (req, res) => {
+  userModel
+    .findByIdAndDelete(req.params.id)
+    .then((response) => {
+      if (!response) {
+        return res.status(404).send();
+      }
+
+      res.send(response);
+    })
+    .catch((error) => {
+      res.status(500).send(error);
+    });
+});
+
+router.post('/createUser', async (req, res) => {
     const {username, password, email} = req.body
     //userModel references to the exported model
 
@@ -89,9 +106,14 @@ router.post('/login', async (req, res) => {
 
 
 ///show all my database users
-router.get('/database', async (req, res) => {
+router.get('/userlist', async (req, res) => {
     const userData = await userModel.find()
     console.log(userData)
     res.send(userData)
 })
+
+
+
+
+
 module.exports = router

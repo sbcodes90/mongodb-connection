@@ -19,7 +19,7 @@ function SignUpForm({
     e.preventDefault();
     try {
       setIsLoading(true)
-      const response = await axios.post("http://localhost:4000/users", { username, password, email })
+      const response = await axios.post("http://localhost:4000/createUser", { username, password, email })
       console.log('response', response)
       setIsLoading(false)
       navigate(`/welcome/${username}`)

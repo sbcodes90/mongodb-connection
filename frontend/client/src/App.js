@@ -23,7 +23,7 @@ function App() {
         <Route path="/signup" element={<SignUpForm username={username} password={password} email={email} setUsername={setUsername} setPassword={setPassword} setEmail={setEmail}/>} />
         <Route path="/login" element={<LoginForm username={username} password={password} setUsername={setUsername} setPassword={setPassword} />} />
         <Route path="/welcome/:username" element={<WelcomePage username={username} />} />
-        <Route path="/database" element={<UserList />} />
+        <Route path="/userlist" element={<UserList />} />
 
       </>
     )

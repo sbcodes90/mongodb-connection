@@ -6,12 +6,18 @@ function UserList() {
   const [userList, setUserList] = useState([]);
 
   const getData = async () => {
-    const response = await axios.get("/database");
+    const response = await axios.get("/userlist");
     //console.log('response', response);
     setUserList(response.data);
     return response;
   };
 
+  const deleteUser = async(id) => {//thank you thank you thank you Lord!!
+    const response = await axios.delete(`/userlist/${id}` )
+    getData()
+   return console.log(response)
+
+  }
   useEffect(() => {
     getData();
   }, []);
@@ -63,6 +69,7 @@ function UserList() {
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                             <button
+                            onClick={()=> deleteUser(user._id)}
                               type="button"
                               className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                             >
