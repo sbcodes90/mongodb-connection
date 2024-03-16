@@ -3,6 +3,7 @@ const router = express.Router()
 const userModel = require('../models/schemas')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const validator = require('validator');
 
 //delete user by id
 
@@ -30,6 +31,23 @@ router.post('/createUser', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: "Email already exists." });
     }
+
+    if(username.length < 3) {
+      return res.status(401).json({ error: 'Username must be at least 3 characters' })
+
+    }
+
+    if (password.length < 5) {
+      return res.status(401).json({ error: 'Password must be at least 8 characters' })
+
+    }
+
+   //check email format
+   const isEmailValid = validator.isEmail(email);
+
+   if (!isEmailValid) {
+    return res.status(401).json({ error: 'Please enter a valid email' })
+   }
 
     //hash password
     const salt = await bcrypt.genSalt(10);
