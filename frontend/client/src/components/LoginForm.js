@@ -14,10 +14,9 @@ function LoginForm({ username, password, setUsername, setPassword }) {
     axios
       .post("http://localhost:4000/login", { username, password })
       .then(response => {
-
+        setUsername("")
+        setPassword("")
         setTimeout(() => {
-           setUsername("")
-           setPassword("")
           setIsLoading(false)
         }, 1000);
         if(response.data) {

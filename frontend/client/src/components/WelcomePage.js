@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import SheildIcon from "./icons/SheildIcon";
+import SheildIcon from "./icons/CheckBadge";
 
 function WelcomePage() {
   const { username } = useParams();
@@ -23,23 +23,22 @@ function WelcomePage() {
     <>
       <div
         className={
-          token
-            ? `bg-teal-500 min-h-screen text-center`
-            : `bg-gray-300 min-h-screen text-center`
+           `bg-teal-500 min-h-screen text-center`
+           
         }
       >
         <div className="flex flex-col items-center pt-[200px] lg:inline-flex lg:mt-[100px]">
           <div
             className={
-              token
-                ? "font-bold text-3xl text-white"
-                : "font-bold lg:text-3xl text-red-600"
+              
+                "font-bold text-3xl text-white"
+                
             }
           >
             {token ? (
               <div>Welcome! {username}</div>
             ) : (
-              "Whoops! Not Authorized Token Required Please login using the information you just created."
+              "Thanks for signing up now please login."
             )}
           </div>
           {token && (
