@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const router = require('./routes/router')
 const mongoose = require('mongoose')
 require('dotenv').config()
+const cookieParser = require('cookie-parser')
 
 const app = express()
 app.use(bodyParser.json())
@@ -15,7 +16,10 @@ const corsOptions = {
     optionSuccessStatus: 200
 }
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
+app.use(cookieParser());
+app.use(express.urlencoded({extended: false}))
+
 app.use('/', router)
 
 mongoose.connect(process.env.DB_URL)

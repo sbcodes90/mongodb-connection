@@ -24,6 +24,7 @@ function SignUpForm({
       console.log('response', response)
         setUsername("")
         setPassword("")
+        setEmail("")
       setIsLoading(false)
       navigate(`/welcome/${username}`)
     } catch(err){
@@ -35,8 +36,6 @@ function SignUpForm({
       
     }
   };
-
-  //console.log('errors', errors)
 
   return (
     <>
@@ -55,13 +54,13 @@ function SignUpForm({
 
             <div className="relative">
               <input
-                type="email"
-                className={`w-full rounded-lg ${errors?.status === 401 ? 'border-red-500 border-2' : 'border-gray-200'} p-4 pe-12 text-md shadow-md`}
+                type="text"
+                className={`w-full rounded-lg ${errors?.status === 400 || errors?.status === 401 ? 'border-red-500 border-2' : 'border-gray-200'} p-4 pe-12 text-md shadow-md`}
                 placeholder="Create username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
-              {errors?.status === 401 && <div className="text-red-600 pt-2 text-sm">Username must be at least 3 characters</div>}
+              {errors?.status === 400 || errors?.status === 401 ? <div className="text-red-600 pt-2 text-sm">Username must be at least 3 characters</div> : null}
             </div>
           </div>
 
@@ -73,12 +72,12 @@ function SignUpForm({
             <div className="relative">
               <input
                 type="password"
-                className={`w-full rounded-lg ${errors?.status === 401 ? 'border-red-500 border-2' : 'border-gray-200'} p-4 pe-12 text-md shadow-md`}
+                className={`w-full rounded-lg ${errors?.status === 402 || errors?.status === 400 ? 'border-red-500 border-2' : 'border-gray-200'} p-4 pe-12 text-md shadow-md`}
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {errors?.status === 401 && <div className="text-red-600 pt-2 text-sm">Password must be at least 5 characters</div>}
+              {errors?.status === 402 || errors?.status === 400 ? <div className="text-red-600 pt-2 text-sm">Password must be at least 5 characters</div> : null}
 
             </div>
           </div>
@@ -90,13 +89,13 @@ function SignUpForm({
             <div className="relative">
               <input
                 type="email"
-                className={`w-full rounded-lg ${errors?.status === 400 || errors?.status === 401 ? 'border-red-500 border-2' : 'border-gray-200' } p-4 pe-12 text-md shadow-md`}
+                className={`w-full rounded-lg ${errors?.status === 400 || errors?.status === 403 ? 'border-red-500 border-2' : 'border-gray-200' } p-4 pe-12 text-md shadow-md`}
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {errors?.status === 400 && <div className="text-red-600 pt-3 text-sm">Email already exists</div>}
-              {errors?.status === 401 && <div className="text-red-600 pt-3 text-sm">Please enter a valid email address</div>}
+              {errors?.status === 400 || errors?.status === 403 ? <div className="text-red-600 pt-3 text-sm">Please enter a valid email address</div> : null}
+              {errors?.status === 404 && <div className="text-red-600 pt-3 text-sm">User already exists</div>}
 
             </div>
           </div>
@@ -111,9 +110,8 @@ function SignUpForm({
 
             <button
               type="submit"
-              className={`inline-block rounded-lg ${errors?.status === 400 ? 'bg-gray-300 cursor-not-allowed' : 'bg-teal-600' } px-5 py-3 text-md font-medium text-white`}
+              className={`inline-block rounded-lg bg-teal-600 px-5 py-3 text-md font-medium text-white`}
               onClick={handleSubmit}
-              disabled={errors?.status === 400}
             >
               Create user
             </button>

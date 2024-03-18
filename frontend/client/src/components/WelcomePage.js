@@ -39,7 +39,7 @@ function WelcomePage() {
             {token ? (
               <div>Welcome! {username}</div>
             ) : (
-              "Whoops! Not Authorized Token Required"
+              "Whoops! Not Authorized Token Required Please login using the information you just created."
             )}
           </div>
           {token && (
@@ -67,13 +67,7 @@ function WelcomePage() {
               className="py-2.5 px-10 me-2 mb-2 text-sm font-medium text-black focus:outline-none rounded-lg border-black border-2 focus:z-10 focus:ring-2 focus:ring-blue-400"
             >
               Login
-            </Link>
-            <Link
-              to="/signup"
-              className="py-2.5 px-9 me-2 mb-2 text-sm font-medium text-black focus:outline-none rounded-lg border-black border-2 focus:z-10 focus:ring-2 focus:ring-blue-400"
-            >
-              Sign Up
-            </Link>
+            </Link>   
           </div>
         )}
       </div>

@@ -23,6 +23,56 @@ router.delete("/userlist/:id", (req, res) => {
 });
 
 router.post('/createUser', async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+
+    //Check if fields are empty 
+    if(!username && !password && !email) {
+      return res.status(400).send('empty fields')
+    }
+    //Check username
+    if( username.length < 4){
+      return res.status(401).json({ error: 'Username is required'})
+    }
+    //Check password
+    if( password.length < 6) {
+      return res.status(402).json({ error: 'Password is required and must be at least 6 characters long'})
+    }
+    //Check email format
+   const isEmailValid = validator.isEmail(email);
+
+   if (!isEmailValid) {
+    return res.status(403).json({ error: 'Please enter a valid email' })
+   }
+
+   //Check if user already exists
+   const emailExist = await userModel.findOne({email});
+
+   if(emailExist) {
+    return res.status(404).json({
+      error: 'User already exists'
+    })
+   }
+
+   //Encrypt and hash password
+   const salt = await bcrypt.genSalt(10);
+   const hashedPassword = await bcrypt.hash(password, salt)
+
+   //Create user
+   const user = await userModel.create({
+    username, email, password: hashedPassword
+   })
+
+   return res.json(user)
+
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+
+
+/* router.post('/createUser', async (req, res) => {
     const {username, password, email} = req.body
     //userModel references to the exported model
 
@@ -65,7 +115,7 @@ router.post('/createUser', async (req, res) => {
  
     
 
-})
+}) */
 
 router.post('/login', async (req, res) => {
 
@@ -98,8 +148,11 @@ router.post('/login', async (req, res) => {
   }
 
   //send jwt token
-  const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-   res.header('auth-token', token).send(token)
+  const token = jwt.sign({_id: user._id, username: user.username}, process.env.TOKEN_SECRET, {}, (err, token) => {
+    if(err) throw err; 
+    res.cookie('auth-token', token).send(token)
+
+  });
 
 
 // try {
