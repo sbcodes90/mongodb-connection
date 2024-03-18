@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import FailureIcon from "./icons/FailureIcon";
 
 function WelcomePage() {
   const { username } = useParams();
@@ -38,7 +37,7 @@ function WelcomePage() {
             {token ? (
               <div>Welcome! {username}</div>
             ) : (
-              "Looks like you need a token please login."
+              "Please login"
             )}
           </div>
           {token && (
@@ -57,7 +56,6 @@ function WelcomePage() {
               </button>
             </div>
           )}
-          <div className="pt-10">{!token && <FailureIcon />}</div>
         </div>
         {!token && (
           <div className="flex space-x-6 justify-center pt-[50px]">
