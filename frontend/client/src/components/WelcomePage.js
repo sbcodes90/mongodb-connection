@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import SheildIcon from "./icons/CheckBadge";
+import FailureIcon from "./icons/FailureIcon";
 
 function WelcomePage() {
   const { username } = useParams();
@@ -38,7 +38,7 @@ function WelcomePage() {
             {token ? (
               <div>Welcome! {username}</div>
             ) : (
-              "Thanks for signing up now please login."
+              "Looks like you need a token please login."
             )}
           </div>
           {token && (
@@ -57,13 +57,13 @@ function WelcomePage() {
               </button>
             </div>
           )}
-          <div className="pt-10">{!token && <SheildIcon />}</div>
+          <div className="pt-10">{!token && <FailureIcon />}</div>
         </div>
         {!token && (
           <div className="flex space-x-6 justify-center pt-[50px]">
             <Link
               to="/login"
-              className="py-2.5 px-10 me-2 mb-2 text-sm font-medium text-black focus:outline-none rounded-lg border-black border-2 focus:z-10 focus:ring-2 focus:ring-blue-400"
+              className="py-[20px] px-20  mb-2 text-lg font-medium text-white focus:outline-none rounded-lg border-white border-2 focus:z-10 focus:ring-2 focus:ring-blue-400"
             >
               Login
             </Link>   
