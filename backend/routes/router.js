@@ -70,53 +70,6 @@ router.post('/createUser', async (req, res) => {
   }
 })
 
-
-
-/* router.post('/createUser', async (req, res) => {
-    const {username, password, email} = req.body
-    //userModel references to the exported model
-
-    //check if user exists
-    const existingUser = await userModel.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already exists." });
-    }
-
-    if(username.length < 3) {
-      return res.status(401).json({ error: 'Username must be at least 3 characters' })
-
-    }
-
-    if (password.length < 5) {
-      return res.status(401).json({ error: 'Password must be at least 8 characters' })
-
-    }
-
-   //check email format
-   const isEmailValid = validator.isEmail(email);
-
-   if (!isEmailValid) {
-    return res.status(401).json({ error: 'Please enter a valid email' })
-   }
-
-    //hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt)
-
-    const userData = {username: username, password:hashedPassword, email:email}
-
-    // save data 
-    const saveData = await userModel.insertMany(userData);
-
-    console.log(saveData)
-    setTimeout(() => {
-      res.send(saveData)
-    }, 5000)
- 
-    
-
-}) */
-
 router.post('/login', async (req, res) => {
 
   const { username, password } = req.body;
@@ -154,30 +107,6 @@ router.post('/login', async (req, res) => {
 
   });
 
-
-// try {
-//     // check if the user exists
-//     const user = await userModel.findOne({ username: req.body.username });
-//     if (user) {
-//       //check if password matches
-//       const result = await bcrypt.compare(req.body.password, user.password);
-      
-//       //Create and assign web token
-//       const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-//       res.header('auth-token', token).send(token)
-
-//       if (result) {
-      
-//         setTimeout(() => {
-//         res.send("successfully logged in");
-//         }, 5000)
-//       } else {
-//         res.status(400).json({ error: "password doesn't match" });
-//       }
-//     } else {
-//       res.status(400).json({ error: "User doesn't exist" });
-//     }
-//   } catch (error) {
     res.status
 })
 
