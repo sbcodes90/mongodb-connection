@@ -25,7 +25,7 @@ app.use('/', router)
 mongoose.connect(process.env.DB_URL)
 .then(() => console.log('DB connected!'))
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 3000
 const server = app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
