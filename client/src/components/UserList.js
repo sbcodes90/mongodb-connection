@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import CautionIcon from "./icons/CautionIcon";
 import { useNavigate } from "react-router-dom";
 import { Spinner } from "./Spinner";
+import { baseUrl } from "../Utils";
 
 function UserList() {
   const [userList, setUserList] = useState([]);
@@ -11,7 +12,7 @@ function UserList() {
   const getData = async () => {
     setLoading(true)
     setTimeout(async () => {
-      const response = await axios.get("/userlist");
+      const response = await axios.get(`${baseUrl}/userlist`);
       setUserList(response.data);
       setLoading(false)
       return response

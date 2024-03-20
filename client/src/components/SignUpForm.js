@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingScreen from "./LoadingScreen";
+import { baseUrl } from "../Utils";
 
 function SignUpForm({
   username,
@@ -20,7 +21,7 @@ function SignUpForm({
     e.preventDefault();
     try {
       setIsLoading(true)
-      const response = await axios.post("http://localhost:4000/createUser", { username, password, email })
+      const response = await axios.post(`${baseUrl}/createUser`, { username, password, email })
       console.log('response', response)
         setUsername("")
         setPassword("")
