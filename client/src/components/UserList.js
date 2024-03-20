@@ -16,7 +16,7 @@ function UserList() {
       setUserList(response.data);
       setLoading(false)
       return response
-    }, 2000)
+    }, 1000)
 
 
   };
@@ -89,7 +89,7 @@ function UserList() {
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                       {userList.map((user) => {
                         return (
-                          <tr key={user._id} className="bg-white">
+                          <tr key={user.id} className="bg-white">
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                               {user.username}
                             </td>

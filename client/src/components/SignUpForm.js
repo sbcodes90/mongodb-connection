@@ -32,7 +32,7 @@ function SignUpForm({
         setErrors(err.response)
         setTimeout(function(){
           setIsLoading(false);
-      }, 2000);
+      }, 1000);
         
       
     }

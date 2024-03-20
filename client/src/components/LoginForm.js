@@ -32,7 +32,7 @@ function LoginForm({ username, password, setUsername, setPassword }) {
           console.log(error.response)
           setTimeout(() => {
             setIsLoading(false)
-          }, 5000);         
+          }, 1000);         
           // setUsername("")
           //setPassword("")
           setErrors(true)
