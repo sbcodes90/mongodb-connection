@@ -22,7 +22,7 @@ function UserList() {
   };
 
   const deleteUser = async (id) => {
-    const response = await axios.delete(`/userlist/${id}`)
+    const response = await axios.delete(`${baseUrl}/userlist/${id}`)
     getData();
     return console.log(response);
 
@@ -89,7 +89,7 @@ function UserList() {
                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                       {userList.map((user) => {
                         return (
-                          <tr key={user.id} className="bg-white">
+                          <tr key={user._id} className="bg-white">
                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
                               {user.username}
                             </td>
