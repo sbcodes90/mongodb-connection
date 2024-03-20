@@ -22,8 +22,9 @@ function UserList() {
   };
 
   const deleteUser = async (id) => {
-    const response = await axios.delete(`/userlist/${id}`)
+    const response = await axios.delete(`${baseUrl}/userlist/${id}`)
     getData();
+    console.log('response', response)
     return console.log(response);
 
   }
