@@ -29,16 +29,16 @@ function WelcomePage() {
             {token ? <div>Welcome! {username}</div> : "Please login"}
           </div>
           {token && (
-            <div className="flex justify-center items-center flex-col lg:flex-row">
+            <div className="flex justify-center items-center flex-col mt-10 lg:flex-row lg:space-x-10  space-y-5 lg:space-y-0" >
               <Link
                 to={token ? "/userlist" : "/"}
-                className="bg-teal-300 text-black px-20 py-5 rounded-lg font-bold mt-20 lg:mr-10"
+                className="bg-teal-300 text-black px-20 py-5 rounded-lg font-bold"
               >
                 Admin
               </Link>
               <button
                 onClick={logout}
-                className="border-white border-2 text-white px-20 py-5 rounded-lg font-bold mt-5"
+                className="border-white border-2 text-white px-[75px] py-5 rounded-lg font-bold"
               >
                 Logout
               </button>
