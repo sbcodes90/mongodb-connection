@@ -141,8 +141,9 @@ function UserList() {
                       
                     </div>
                     <button  onClick={() => deleteUser(user._id)}
-                                  type="button" className="bg-teal-900 text-white font-black flex justify-center px-10 py-3 rounded-3xl mt-10">
+                                  type="button" className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800   dark:shadow-lg dark:shadow-teal-800/80 font-bold rounded-lg text-lg text-white px-5 py-2.5 text-center me-2 mb-2 flex justify-center mt-10">
                       Remove
+
                     </button>
                   </div>
                 );
