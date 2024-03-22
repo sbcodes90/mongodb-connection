@@ -2,8 +2,9 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import CautionIcon from "./icons/CautionIcon";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "./Spinner";
 import { baseUrl } from "../Utils";
+import Spinner from "../components/Spinner";
+
 
 function UserList() {
   const [userList, setUserList] = useState([]);
@@ -45,15 +46,15 @@ function UserList() {
 
   return (
     <>
-      <div className="bg-teal-400 min-h-screen text-center pt-[200px]">
+      <div className="bg-teal-400 min-h-screen text-center pt-[100px] lg:pt-[200px]">
         <div className="text-4xl font-black text-black pb-5">User Database</div>
-        <div className=" text-2xl font-medium flex justify-center">
+        <div className=" text-md lg:text-2xl font-bold flex justify-center">
           Caution: Top Secret Information
           <CautionIcon />
         </div>
 
         {loading ? (
-          <Spinner message={"Loading....."} />
+          <Spinner message="Loading..." />
         ) : (
           <>
             <div className="hidden md:flex lg:flex md:flex-col lg:flex-col p-20">
@@ -117,12 +118,12 @@ function UserList() {
                 </div>
               </div>
             </div>
-            <div className="md:hidden lg:hidden p-20">
+            <div className="md:hidden lg:hidden p-5">
               {userList.map((user) => {
                 return (
                   <div
                     key={user._id}
-                    className="bg-white rounded-3xl shadow-2xl py-10 px-5 mb-10"
+                    className="bg-white rounded-3xl shadow-2xl py-5 px-5 mb-10 mt-5"
                   >
                     <div
                       id="text-container"
@@ -141,7 +142,7 @@ function UserList() {
                       
                     </div>
                     <button  onClick={() => deleteUser(user._id)}
-                                  type="button" className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800   dark:shadow-lg dark:shadow-teal-800/80 font-bold rounded-lg text-lg text-white px-5 py-2.5 text-center me-2 mb-2 flex justify-center mt-10">
+                                  type="button" className="bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800   dark:shadow-lg dark:shadow-teal-800/80 font-bold rounded-lg text-lg text-white px-10 py-2.5 text-center me-2 mb-2 mt-10">
                       Remove
 
                     </button>
@@ -150,7 +151,7 @@ function UserList() {
               })}
                <button
                     onClick={logout}
-                    className="border-white border-4 text-white px-20  py-3 rounded-lg font-bold text-2xl mt-5"
+                    className="border-white border-2 text-white px-10  py-2 rounded-lg font-bold text-xl"
                   >
                     Logout
                   </button>
