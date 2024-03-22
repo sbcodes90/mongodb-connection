@@ -66,19 +66,19 @@ function UserList() {
                         <tr>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-center text-xs font-medium text-black uppercase"
+                            className="px-6 py-3 text-center text-lg font-medium text-black uppercase"
                           >
                             User
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-center text-xs font-medium text-black uppercase"
+                            className="px-6 py-3 text-center text-lg font-medium text-black uppercase"
                           >
                             Email
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-end text-xs font-medium text-black uppercase"
+                            className="px-6 py-3 text-end text-lg font-medium text-black uppercase"
                           >
                             Action
                           </th>
@@ -88,17 +88,17 @@ function UserList() {
                         {userList.map((user) => {
                           return (
                             <tr key={user._id} className="bg-white">
-                              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-gray-200">
+                              <td className="px-6 py-4 whitespace-nowrap text-lg font-medium text-gray-800 dark:text-gray-200">
                                 {user.username}
                               </td>
-                              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                              <td className="px-6 py-4 whitespace-nowrap text-lg text-gray-800 dark:text-gray-200">
                                 {user.email}
                               </td>
                               <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                 <button
                                   onClick={() => deleteUser(user._id)}
                                   type="button"
-                                  className="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                  className="inline-flex items-center gap-x-2 text-lg font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                                 >
                                   Delete
                                 </button>
